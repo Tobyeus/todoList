@@ -14,6 +14,7 @@ body{
     display: flex;
     flex-direction: column;
     font-size: 3rem;
+    margin-top: 3rem;
 }
 
 h1 {
@@ -55,7 +56,7 @@ h1 {
 }
 
 .task {
-    width:90%;
+    width:95%;
 }
 
 .fa-plus-square{
@@ -65,12 +66,13 @@ h1 {
 .fa-check {
     cursor: pointer;
     color: green;
-    padding: 0px 1% 0px 1%;
+    padding: 0px 0.5rem 0px 0;
 }
 
 .fa-times {
     cursor: pointer;
     color: red;
+    padding: 0px 0.5rem 0px 0;
 }
 
 h2 {
