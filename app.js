@@ -10,7 +10,6 @@ todoArray.forEach(function(task) {
     let newTodo = createTodo(task);
     console.log(newTodo);
     createComplete(newTodo);
-    createDelete(newTodo);
 });
 
 const buttons = document.querySelectorAll('.btn')
@@ -33,7 +32,6 @@ btn_add.addEventListener('click', function(e){
         let newDiv = createTodo(userInput);
         createComplete(newDiv);
         btn_complete = document.querySelectorAll('.complete');
-        createDelete(newDiv);
         todoArray.push(userInput);
     }
     document.getElementById('newTodo').value = '';
@@ -44,19 +42,18 @@ btn_delete.forEach(function(btn){
     btn.addEventListener('click', function(event) {
         //console.log(event.target.parentElement);
         let todoElement = event.target.parentElement;
-        if(todoElement.parentElement == todo_container){
-            todo_container.removeChild(todoElement);
-        } else{
-            completed_container.removeChild(todoElement);
-        }
+        completed_container.removeChild(todoElement);
     })
 })
 
 btn_complete.forEach(function(btn){
     btn.addEventListener('click', function(event) {
+        let button = event.target;
         let todoElement = event.target.parentElement;
-        todo_container.removeChild(todoElement);
+        todoElement.removeChild(button);
+        console.log(event.target);
         completed_container.appendChild(todoElement);
+        createDelete(todoElement);
     })
 })
 
