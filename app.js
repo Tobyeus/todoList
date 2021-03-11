@@ -3,20 +3,19 @@ let todoArray = ['Vacuum room', 'Do laundry', 'Chores'];
 
 const todo_container = document.querySelector('.todo-container');
 const completed_container = document.querySelector('.completed-container');
-const todo = document.querySelector('.todo')
 const newTask = document.querySelector('.newTask')
-
-todoArray.forEach(function(task) {
-    let newTodo = createTodo(task);
-    console.log(newTodo);
-    createComplete(newTodo);
-});
 
 const buttons = document.querySelectorAll('.btn')
 let btn_add = document.querySelector('.add');
-var btn_complete = document.querySelectorAll('.complete');
+let btn_complete = document.querySelectorAll('.complete');
 let btn_delete = document.querySelectorAll('.delete');
 const input = document.querySelector('.header-add');
+
+
+todoArray.forEach(function(task) {
+    let newTodo = createTodo(task);
+    createComplete(newTodo);
+});
 
 // Button Events
 // Add Button mit Textfeld
@@ -31,31 +30,34 @@ btn_add.addEventListener('click', function(e){
     } else{
         let newDiv = createTodo(userInput);
         createComplete(newDiv);
-        btn_complete = document.querySelectorAll('.complete');
         todoArray.push(userInput);
     }
     document.getElementById('newTodo').value = '';
-
+    console.log(btn_complete);
 })
 
-btn_delete.forEach(function(btn){
-    btn.addEventListener('click', function(event) {
-        //console.log(event.target.parentElement);
-        let todoElement = event.target.parentElement;
-        completed_container.removeChild(todoElement);
-    })
-})
-
-btn_complete.forEach(function(btn){
+/* /btn_complete.forEach(function(btn){
     btn.addEventListener('click', function(event) {
         let button = event.target;
+        console.log(button);
         let todoElement = event.target.parentElement;
+        //button.classList.remove('complete', 'fas', 'fa-check');
         todoElement.removeChild(button);
-        console.log(event.target);
         completed_container.appendChild(todoElement);
         createDelete(todoElement);
     })
 })
+*/
+
+/* btn_delete.forEach(function(btn){
+    btn.addEventListener('click', function(event) {
+        //console.log(event.target.parentElement);
+        let todoElement = event.target.parentElement;
+        console.log(todoElement);
+        //completed_container.removeChild(todoElement);
+    })
+})
+*/
 
 function createTodo(task){
     let newDiv = document.createElement('div');
@@ -73,9 +75,12 @@ function createComplete(div){
     div.appendChild(completeBtn);
     completeBtn.classList.add('btn', 'complete', 'fas', 'fa-check');
     completeBtn.addEventListener('click', function(event) {
+        let button = event.target;
         let todoElement = event.target.parentElement;
-        todo_container.removeChild(todoElement);
+        //button.classList.remove('complete', 'fas', 'fa-check');
+        todoElement.removeChild(button);
         completed_container.appendChild(todoElement);
+        createDelete(todoElement);
     })
 }
 
